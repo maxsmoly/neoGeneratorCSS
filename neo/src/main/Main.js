@@ -17,7 +17,6 @@ class Main extends React.Component {
 	}
 	rangeRadius(e) {
 		this.setState({ resultRadius: +e.target.value })
-		console.log(+e.target.value)
 	}
 
 	render() {
@@ -45,6 +44,20 @@ class Main extends React.Component {
 							defaultValue='10'
 						/>
 						<p>{this.state.resultRadius + 'px'}</p>
+						<div className='code-result'>
+							<p>
+								<pre>
+									<code>
+										height: {this.state.resultWidth + 'px'};
+										<br />
+										width: {this.state.resultWidth + 'px'};
+										<br />
+										border-radius: {this.state.resultRadius + 'px'};
+										<br />
+									</code>
+								</pre>
+							</p>
+						</div>
 					</div>
 				</div>
 			</main>

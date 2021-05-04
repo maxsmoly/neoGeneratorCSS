@@ -33,3 +33,9 @@
 	background-color: #955fdf;
 	border-radius: 50px;
 }
+.code-result {
+	margin: auto;
+	width: 400px;
+	height: 200px;
+	background-color: #fff;
+}
