@@ -9,18 +9,19 @@ class Main extends React.Component {
 			resultWidth: 190,
 			resultRadius: 20,
 			bgResult: '#e0e0e0',
-			horizontal: 22,
-			vertical: 22,
-			blur: 60,
-			colorOne: '#bebebe',
-			negativeHorizont: -22,
-			negatiVertical: -22,
-			colorTwo: '#FFFFFF',
+			horizontal: 5,
+			vertical: 5,
+			blur: 100,
+			colorOne: '#000000',
+			negativeHorizont: -5,
+			negatiVertical: -5,
+			colorTwo: '#ffffff',
 			shadowRes: '',
 		}
 		this.rangeSize = this.rangeSize.bind(this)
 		this.rangeRadius = this.rangeRadius.bind(this)
 		this.shadowString = this.shadowString.bind(this)
+		this.rangeBlur = this.rangeBlur.bind(this)
 	}
 	rangeSize(e) {
 		this.setState({ resultWidth: +e.target.value })
@@ -28,10 +29,13 @@ class Main extends React.Component {
 	rangeRadius(e) {
 		this.setState({ resultRadius: +e.target.value })
 	}
-	shadowString() {
+	// rangeBlur(e) {
+	// 	this.setState({ blur: +e.target.value })
+	// }
+	shadowString(e) {
 		let a = this.state.horizontal + 'px '
 		let b = this.state.vertical + 'px '
-		let c = this.state.blur + 'px '
+		let c = e.target.value + 'px '
 		let d = ',' + this.state.negativeHorizont + 'px '
 		let e = this.state.negatiVertical + 'px '
 		this.setState({ horizontal: a })
@@ -82,17 +86,17 @@ class Main extends React.Component {
 						/>
 						<p>{this.state.resultRadius + 'px'}</p>
 						<input
-							className='result-distance'
-							onChange={this.rangeSize}
+							className='result-blur'
+							onChange={this.shadowString}
 							type='range'
 							min='0'
 							max='100'
 							step='1'
-							defaultValue='10'
+							defaultValue={this.state.blur}
 						/>
 						<p></p>
 						<input
-							className='result-blur'
+							className='result-distance'
 							onChange={this.rangeRadius}
 							type='range'
 							min='0'
@@ -113,7 +117,15 @@ class Main extends React.Component {
 										<br />
 										background: {this.state.bgResult}
 										<br />
-										box-shadow:{this.state.shadowRes}
+										box-shadow: {this.state.horizontal + 'px '}
+										{this.state.vertical + 'px '}
+										{this.state.blur + 'px '}
+										{this.state.colorOne},
+										<br />
+										{this.state.negativeHorizont + 'px '}
+										{this.state.negatiVertical + 'px '}
+										{this.state.blur + 'px '}
+										{this.state.colorTwo}
 									</code>
 								</pre>
 							</p>
