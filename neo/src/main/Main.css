@@ -8,7 +8,6 @@
 .main {
 	display: flex;
 	justify-content: space-around;
-	margin-top: 100px;
 }
 
 .render-block {
@@ -16,16 +15,13 @@
 	flex-direction: column;
 	height: 500px;
 	width: 500px;
-	background-color: rgb(78, 124, 133);
 }
 .result {
 	margin-top: auto;
 	margin-bottom: auto;
 	margin-left: auto;
 	margin-right: auto;
-	height: 200px;
-	width: 200px;
-	background-color: rgb(102, 61, 61);
+	box-shadow: 22px 22px 60px #bebebe, -22px -22px 60px #ffffff;
 }
 .settings {
 	height: 500px;
