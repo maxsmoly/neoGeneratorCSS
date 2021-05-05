@@ -23,28 +23,28 @@ class Main extends React.Component {
 		this.shadowString = this.shadowString.bind(this)
 		this.rangeBlur = this.rangeBlur.bind(this)
 	}
-	rangeSize(e) {
-		this.setState({ resultWidth: +e.target.value })
-	}
-	rangeRadius(e) {
-		this.setState({ resultRadius: +e.target.value })
-	}
+	// rangeSize(e) {
+	// 	this.setState({ resultWidth: +e.target.value })
+	// }
+	// rangeRadius(e) {
+	// 	this.setState({ resultRadius: +e.target.value })
+	// }
 	// rangeBlur(e) {
 	// 	this.setState({ blur: +e.target.value })
 	// }
-	shadowString(e) {
-		let a = this.state.horizontal + 'px '
-		let b = this.state.vertical + 'px '
-		let c = e.target.value + 'px '
-		let d = ',' + this.state.negativeHorizont + 'px '
-		let e = this.state.negatiVertical + 'px '
-		this.setState({ horizontal: a })
-		this.setState({ vertical: b })
-		this.setState({ blur: c })
-		this.setState({ colorOne: this.state.colorOne })
-		this.setState({ shadowRes: a + b + c + this.state.colorOne + d + e + c + this.state.colorTwo })
-		console.log(this.state.shadowRes)
-	}
+	// shadowString(e) {
+	// 	let a = this.state.horizontal + 'px '
+	// 	let b = this.state.vertical + 'px '
+	// 	let c = e.target.value + 'px '
+	// 	let d = ',' + this.state.negativeHorizont + 'px '
+	// 	let e = this.state.negatiVertical + 'px '
+	// 	this.setState({ horizontal: a })
+	// 	this.setState({ vertical: b })
+	// 	this.setState({ blur: c })
+	// 	this.setState({ colorOne: this.state.colorOne })
+	// 	this.setState({ shadowRes: a + b + c + this.state.colorOne + d + e + c + this.state.colorTwo })
+	// 	console.log(this.state.shadowRes)
+	// }
 
 	render() {
 		let resultStyle = {
