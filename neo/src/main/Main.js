@@ -9,19 +9,19 @@ class Main extends React.Component {
 			resultWidth: 190,
 			resultRadius: 20,
 			bgResult: '#e0e0e0',
-			horizontal: 5,
-			vertical: 5,
-			blur: 100,
-			colorOne: '#000000',
-			negativeHorizont: -5,
-			negatiVertical: -5,
+			horizontal: 20,
+			vertical: 20,
+			blur: 60,
+			colorOne: '#bebebe',
+			negativeHorizont: -20,
+			negatiVertical: -20,
 			colorTwo: '#ffffff',
-			shadowRes: '',
 		}
 		this.rangeSize = this.rangeSize.bind(this)
 		this.rangeRadius = this.rangeRadius.bind(this)
-		this.shadowString = this.shadowString.bind(this)
 		this.rangeBlur = this.rangeBlur.bind(this)
+		this.rangeDistance = this.rangeDistance.bind(this)
+		this.colorValue = this.colorValue.bind(this)
 	}
 	rangeSize(e) {
 		this.setState({ resultWidth: +e.target.value })
@@ -32,31 +32,33 @@ class Main extends React.Component {
 	rangeBlur(e) {
 		this.setState({ blur: +e.target.value })
 	}
-	shadowString(e) {
-		let a = this.state.horizontal + 'px '
-		let b = this.state.vertical + 'px '
-		let c = e.target.value + 'px '
-		let d = ',' + this.state.negativeHorizont + 'px '
-		let e = this.state.negatiVertical + 'px '
-		this.setState({ horizontal: a })
-		this.setState({ vertical: b })
-		this.setState({ blur: c })
-		this.setState({ colorOne: this.state.colorOne })
-		this.setState({ shadowRes: a + b + c + this.state.colorOne + d + e + c + this.state.colorTwo })
-		console.log(this.state.shadowRes)
+	rangeDistance(e) {
+		this.setState({ horizontal: +e.target.value })
+		this.setState({ vertical: +e.target.value })
+		this.setState({ negativeHorizont: -+e.target.value })
+		this.setState({ negatiVertical: -+e.target.value })
+	}
+	colorValue(e) {
+		console.log(e.target.value)
 	}
 
 	render() {
+		let horizontal = this.state.horizontal + 'px'
+		let vertical = this.state.vertical + 'px'
+		let blur = this.state.blur + 'px'
+		let colorOne = this.state.colorOne
+		let negativeHorizont = this.state.negativeHorizont + 'px'
+		let negatiVertical = this.state.negatiVertical + 'px'
+		let colorTwo = this.state.colorTwo
 		let resultStyle = {
 			width: this.state.resultWidth,
 			height: this.state.resultWidth,
 			borderRadius: this.state.resultRadius,
 			background: this.state.bgResult,
-			boxShadow: this.state.shadowRes,
+			boxShadow: `${horizontal} ${vertical} ${blur} ${colorOne},${negativeHorizont} ${negatiVertical} ${blur} ${colorTwo}`,
 		}
 
 		console.log(resultStyle)
-		console.log(this.state.shadowRes)
 
 		return (
 			<main>
@@ -66,8 +68,14 @@ class Main extends React.Component {
 					</div>
 					<div className='settings'>
 						<input
+							className='color-picker'
+							onChange={this.colorValue}
+							type='color'
+							defaultValue={this.state.bgResult}
+						/>
+						<input
 							className='result-size'
-							onInput={this.rangeSize}
+							onChange={this.rangeSize}
 							type='range'
 							min='50'
 							max='200'
@@ -87,7 +95,7 @@ class Main extends React.Component {
 						<p>{this.state.resultRadius + 'px'}</p>
 						<input
 							className='result-blur'
-							onChange={this.shadowString}
+							onChange={this.rangeBlur}
 							type='range'
 							min='0'
 							max='100'
@@ -97,7 +105,7 @@ class Main extends React.Component {
 						<p></p>
 						<input
 							className='result-distance'
-							onChange={this.rangeRadius}
+							onChange={this.rangeDistance}
 							type='range'
 							min='0'
 							max='100'
@@ -107,27 +115,25 @@ class Main extends React.Component {
 						<p></p>
 						<div className='code-result'>
 							<p>
-								<pre>
-									<code>
-										height: {this.state.resultWidth + 'px'};
-										<br />
-										width: {this.state.resultWidth + 'px'};
-										<br />
-										border-radius: {this.state.resultRadius + 'px'};
-										<br />
-										background: {this.state.bgResult}
-										<br />
-										box-shadow: {this.state.horizontal + 'px '}
-										{this.state.vertical + 'px '}
-										{this.state.blur + 'px '}
-										{this.state.colorOne},
-										<br />
-										{this.state.negativeHorizont + 'px '}
-										{this.state.negatiVertical + 'px '}
-										{this.state.blur + 'px '}
-										{this.state.colorTwo}
-									</code>
-								</pre>
+								<code>
+									height: {this.state.resultWidth + 'px'};
+									<br />
+									width: {this.state.resultWidth + 'px'};
+									<br />
+									border-radius: {this.state.resultRadius + 'px'};
+									<br />
+									background: {this.state.bgResult}
+									<br />
+									box-shadow: {this.state.horizontal + 'px '}
+									{this.state.vertical + 'px '}
+									{this.state.blur + 'px '}
+									{this.state.colorOne},
+									<br />
+									{this.state.negativeHorizont + 'px '}
+									{this.state.negatiVertical + 'px '}
+									{this.state.blur + 'px '}
+									{this.state.colorTwo}
+								</code>
 							</p>
 						</div>
 					</div>
