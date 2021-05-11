@@ -40,13 +40,23 @@ class Main extends React.Component {
 	}
 	colorValue(e) {
 		let hex = e.target.value
+		console.log(hex)
+		this.setState({ bgResult: hex })
 		const hexToRgb = hex
 			.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i, (m, r, g, b) => '#' + r + r + g + g + b + b)
 			.substring(1)
 			.match(/.{2}/g)
 			.map((x) => parseInt(x, 16))
 
+		const rgbToHex = (r, g, b) => '#' + [r, g, b].map((x) => x.toString(16).padStart(2, '0')).join('')
 		console.log(hexToRgb)
+		let color1 = hexToRgb.map((x) => Math.round((x * 80) / 100))
+		this.setState({ colorOne: rgbToHex(color1[0], color1[1], color1[2]) })
+		console.log(color1)
+		let color2 = color1.map((x) => Math.round(x * 2))
+		console.log(color2)
+		this.setState({ colorTwo: rgbToHex(color2[0], color2[1], color2[2]) })
+		console.log(rgbToHex(hexToRgb[0], hexToRgb[1], hexToRgb[2]))
 	}
 
 	render() {
